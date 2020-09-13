@@ -1,0 +1,48 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "target": "es6",
+    "downlevelIteration": true,
+    "noImplicitAny": true,
+    "noImplicitThis": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "resolveJsonModule": true,
+    "strict": true,
+    "declaration": true,
+    "noImplicitReturns": true,
+    "preserveConstEnums": true,
+    "preserveSymlinks": true,
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "outDir": "build",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@": ["src/"]
+    },
+    "rootDir": "src",
+    "types": [
+      "node",
+      "jest"
+    ],
+    "lib": [
+      "esnext",
+      "dom"
+    ],
+    "typeRoots": ["node_modules/@types"]
+  },
+  "exclude": [
+    "node_modules",
+    "build",
+    "src/**/*.ispec.ts",
+    "src/**/*.spec.ts",
+    "src/__tests__"
+  ],
+  "include": [
+    "src/**/*"
+  ]
+}

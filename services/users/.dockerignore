@@ -1,0 +1,6 @@
+node_modules/
+scripts/
+services/
+coverage/
+build/
+hooks/

@@ -1,0 +1,61 @@
+config:
+  target: http://localhost:7000
+  processor: ./my-functions.js
+  phases:
+    - duration: 1
+      arrivalRate: 1
+    - duration: 1
+      arrivalRate: 2
+    - duration: 10
+      arrivalRate: 2
+    - duration: 10
+      arrivalRate: 10
+  defaults:
+    headers:
+      Content-Type: 'application/json'
+  http:
+    pool: 10
+scenarios:
+  - name: User Lifecycle
+    weight: 1
+    flow:
+      - function: generateRandomData
+      - post:
+          url: /
+          body: |
+            {
+              "given_name": "{{ randomFirstName }}",
+              "family_name": "{{ randomLastName }}",
+              "username": "{{ randomUsername }}"
+            }
+          capture:
+            json: $.id
+            as: user_id
+          expect:
+            - statusCode: 201
+      - log: "New user: {{ user_id }}"
+      - think: 1
+      - get:
+          url: "/{{ user_id }}"
+          expect:
+            - statusCode: 200
+      - think: 1
+      - patch:
+          url: "/{{ user_id }}"
+          body: |
+            {
+              "given_name": "{{ randomPatchedFirstName }}",
+              "family_name": "{{ randomPatchedLastName }}",
+              "username": "{{ randomPatchedUsername }}"
+            }
+          expect:
+            - statusCode: 204
+      - delete:
+          url: "/{{ user_id }}"
+          expect:
+            - statusCode: 204
+      - think: 1
+      - get:
+          url: "/{{ user_id }}"
+          expect:
+            - statusCode: 404

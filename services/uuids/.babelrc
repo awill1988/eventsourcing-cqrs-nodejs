@@ -1,0 +1,41 @@
+{
+  "comments": false,
+  "sourceMaps": "inline",
+  "retainLines": true,
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "node": true
+        }
+      }
+    ],
+    "@babel/typescript"
+  ],
+  "plugins": [
+    [
+      "@babel/plugin-transform-async-to-generator", {
+      "module": "bluebird",
+      "method": "coroutine"
+    }],
+    [
+      "@babel/plugin-proposal-decorators",
+      {
+        "legacy": true
+      }
+    ],
+    "@babel/proposal-class-properties",
+    "@babel/plugin-proposal-private-methods",
+    "@babel/proposal-object-rest-spread",
+    "source-map-support",
+    [
+      "module-resolver",
+      {
+        "alias": {
+          "@": "./src"
+        }
+      }
+    ]
+  ]
+}

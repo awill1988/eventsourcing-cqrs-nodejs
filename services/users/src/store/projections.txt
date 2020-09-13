@@ -1,0 +1,1 @@
+"fromAll().when({$init: function(){return {};},UserCreated: function(s, e) {if (e.data && e.data.username) {s[`${e.data.username.toLowerCase()}`] = 1;}}}).outputState();"
