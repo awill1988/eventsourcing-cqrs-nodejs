@@ -32,7 +32,9 @@ Domain Driven Design (DDD), Command Query Responsibility Segregation (CQRS), and
 
 ## Running Tests
 
-Run `make test` in a terminal after setting up the stack
+Run `make test` in a terminal after setting up the stack.
+
+**Note**: If you receive ERRCONNRESET responses in your terminal, run `docker restart users` to reboot, and `make logs users` to verify the users service connects to RabbitMQ successfully.
 
 ## Research & Inspiration
 
